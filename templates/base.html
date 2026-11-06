@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Demo project{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container header__inner">
+            <a href="{% url 'home' %}" class="logo">Demo<span>.</span></a>
+            <nav class="nav">
+                {% with current=request.resolver_match.url_name %}
+                <a href="{% url 'home' %}" class="nav__link{% if current == 'home' %} is-active{% endif %}">Bosh sahifa</a>
+                <a href="{% url 'posts' %}" class="nav__link{% if current == 'posts' %} is-active{% endif %}">Postlar</a>
+                {% endwith %}
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="container">© {% now "Y" %} Demo project</div>
+    </footer>
+
+</body>
+</html>

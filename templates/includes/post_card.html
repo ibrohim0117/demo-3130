@@ -1,0 +1,14 @@
+<article class="card">
+    <div class="card__media">
+        {% if post.image %}
+            <img src="{{ post.image.url }}" alt="{{ post.title }}" loading="lazy">
+        {% else %}
+            <div class="card__placeholder">{{ post.title|first|upper }}</div>
+        {% endif %}
+    </div>
+    <div class="card__body">
+        <time class="card__date" datetime="{{ post.created_at|date:'c' }}">{{ post.created_at|date:"d.m.Y" }}</time>
+        <h3 class="card__title">{{ post.title }}</h3>
+        <p class="card__text">{{ post.about|linebreaksbr }}</p>
+    </div>
+</article>

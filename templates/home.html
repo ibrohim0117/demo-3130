@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Bosh sahifa · Demo project{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container">
+        <span class="badge">Django loyihasi</span>
+        <h1 class="hero__title">Demo <span class="gradient-text">project</span></h1>
+        <p class="hero__text">Eng so'nggi postlar, yangiliklar va maqolalar — barchasi bir joyda.</p>
+        <div class="hero__actions">
+            <a href="{% url 'posts' %}" class="btn btn--primary">Postlarni ko'rish →</a>
+            <a href="{% url 'admin:index' %}" class="btn btn--ghost">Admin panel</a>
+        </div>
+    </div>
+</section>
+
+{% if latest_posts %}
+<section class="section">
+    <div class="container">
+        <div class="section__head">
+            <h2 class="section__title">So'nggi postlar</h2>
+            <a href="{% url 'posts' %}" class="link">Barchasi →</a>
+        </div>
+        <div class="grid grid--compact">
+            {% for post in latest_posts %}
+                {% include 'includes/post_card.html' %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endblock %}
